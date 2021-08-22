@@ -9,6 +9,103 @@
 </head>
 <body>
     
+    <div class="main">
+        <!-- Bienvenida -->
+        <section class="seccion1-bienvenida">
+            <div class="contenedor__img-bienvenida">
+                <img src="imagenes/logo-bienvenida.png" alt="logo">
+            </div>
+        </section>
+
+        <!-- Login -->
+        <section class="seccion2-login">
+            <div class="contenedor__img-login">
+                <img src="imagenes/logo-bienvenida.png" alt="logo">
+            </div>
+            <div class="contenedor__titulo-login">
+                <h1>Iniciar sesión</h1>
+            </div>
+            <div class="contenedor__google">
+                <p><img src="imagenes/icono-google.png"></img> Continuar con google</p>
+            </div>
+            <hr>
+            <div class="contenedor__input-login">
+                <label >Correo electrónico</label>
+                <input type="email" placeholder="Ingrese su correo electrónico">
+            </div>
+            <div class="contenedor__opciones-registro">
+                <a href="#">¿Se te olvidó tu contraseña?</a>
+                <p>¿Aún no tienes cuenta?  <a href="#">inscribirse</a></p>
+            </div>
+        </section>
+
+        <!-- Home -->
+        <section class="seccion3-home">
+            <article>
+                <header>
+                    <h2>Practica tus conocimientos en la categoría que prefieras </h2>
+                </header>
+                <div class="contenedor__opciones-lenguajes">
+                    <div class="lenguaje-html">
+                        <img src="imagenes/logo-html.png" alt="logo html">
+                    </div>
+                    <div class="lenguaje-css">
+                        <img src="imagenes/logo-css.png" alt="logo css">
+                    </div>
+                    <div class="lenguaje-js">
+                        <img src="imagenes/logo-js.png" alt="logo js">
+                    </div>
+                </div>
+            </article>
+            <header class="navegacion">
+                <nav class="navegacion-opciones">
+                    <div class="cont-logo-home">
+                        <img src="imagenes/icono-home.png" alt="">
+                    </div>
+                    <div class="cont-logo-estadisticas">
+                        <img src="imagenes/icono-estadisticas.png" alt="">
+                    </div>
+                    <div class="cont-logo-perfil">
+                        <img src="imagenes/icono-perfil.png" alt="">
+                    </div>
+                </nav>
+            </header>
+        </section>
+
+        <!-- Preguntas tipo range -->
+        <section class="seccion4-preguntas__tipo-range">
+            <header class="cabecera-progreso">
+                <img src="imagenes/icono-x.png" alt="icono x">
+                <div class="barra"></div>
+                <img src="imagenes/logo-corazon.png" alt="icono corazon">
+                <span>4</span>
+            </header>
+            <div class="enunciado-pregunta">
+                <img src="imagenes/avatar1.png" alt="logo avatar">
+                <p>¿Qué etiqueta es semánticamente correcta para el contenido principal?</p>
+            </div>
+            <div class="preguntas">
+                <div class="opcion1">
+                    <p>main</p>
+                    <input type="radio">
+                </div>
+                <div class="opcion2">
+                    <p>section</p>
+                    <input type="radio">
+                </div>
+                <div class="opcion3">
+                    <p>header</p>
+                    <input type="radio">
+                </div>
+            </div>
+            
+            <div class="boton-respuesta">
+                COMPROBAR
+            </div>
+        </section>
+
+    </div>
+    
 
     <script src="script/index.js" type="module"></script>
 </body>
