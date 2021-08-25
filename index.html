@@ -5,20 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/hover.css">
     <title>Daily Bits</title>
 </head>
 <body>
     
     <div class="main">
         <!-- Bienvenida -->
-        <section class="seccion1-bienvenida">
+        <section class="seccion1-bienvenida" id="bienvenida">
             <div class="contenedor__img-bienvenida">
                 <img src="imagenes/logo-bienvenida.png" alt="logo">
             </div>
         </section>
 
         <!-- Login -->
-        <section class="seccion2-login">
+        <section class="seccion2-login pintar-ocultar" id="login">
             <div class="contenedor__img-login">
                 <img src="imagenes/logo-bienvenida.png" alt="logo">
             </div>
@@ -40,144 +41,144 @@
         </section>
 
         <!-- Home -->
-        <section class="seccion3-home">
+        <section class="seccion3-home pintar-ocultar" id="home">
             <article>
                 <header>
                     <h2>Practica tus conocimientos en la categoría que prefieras </h2>
                 </header>
                 <div class="contenedor__opciones-lenguajes">
                     <div class="lenguaje-html">
-                        <img src="imagenes/logo-html.png" alt="logo html">
+                        <img src="imagenes/logo-html.png" alt="logo html" id="btn-html">
                     </div>
                     <div class="lenguaje-css">
-                        <img src="imagenes/logo-css.png" alt="logo css">
+                        <img src="imagenes/logo-css.png" alt="logo css" id="btn-css">
                     </div>
                     <div class="lenguaje-js">
-                        <img src="imagenes/logo-js.png" alt="logo js">
+                        <img src="imagenes/logo-js.png" alt="logo js" id="btn-js">
                     </div>
                 </div>
             </article>
             <header class="navegacion">
                 <nav class="navegacion-opciones">
                     <div class="cont-logo-home">
-                        <img src="imagenes/icono-home.png" alt="">
+                        <img src="imagenes/icono-home.png" alt="" id="btnH_Home">
                     </div>
                     <div class="cont-logo-estadisticas">
-                        <img src="imagenes/icono-estadisticas.png" alt="">
+                        <img src="imagenes/icono-estadisticas.png" alt="" id="btnH_Estadisticas">
                     </div>
                     <div class="cont-logo-perfil">
-                        <img src="imagenes/icono-perfil.png" alt="">
+                        <img src="imagenes/icono-perfil.png" alt="" id="btnH_Perfil">
                     </div>
                 </nav>
             </header>
         </section>
 
         <!-- Preguntas tipo range -->
-        <section class="seccion4-1-preguntas__tipo-range">
+        <section class="seccion4-1-preguntas__tipo-range pintar-ocultar" id="preguntas-tipo1-range">
             <header class="cabecera-progreso">
-                <img src="imagenes/icono-x.png" alt="icono x">
+                <img class="x regresar" src="imagenes/icono-x.png" alt="icono x">
                 <div class="barra"></div>
-                <img src="imagenes/logo-corazon.png" alt="icono corazon">
+                <img class="corazon" src="imagenes/logo-corazon.png" alt="icono corazon">
                 <span>4</span>
             </header>
             <div class="enunciado-pregunta">
                 <img src="imagenes/avatar1.png" alt="logo avatar">
-                <p>¿Qué etiqueta es semánticamente correcta para el contenido principal?</p>
+                <p></p>
             </div>
             <div class="preguntas">
                 <div class="opcion1">
-                    <p>main</p>
+                    <p></p>
                     <input type="radio">
                 </div>
                 <div class="opcion2">
-                    <p>section</p>
+                    <p></p>
                     <input type="radio">
                 </div>
                 <div class="opcion3">
-                    <p>header</p>
+                    <p></p>
                     <input type="radio">
                 </div>
             </div>
             
-            <div class="boton-respuesta">
+            <div class="boton-respuesta-range btnComprobar">
                 COMPROBAR
             </div>
         </section>
 
         <!-- Preguntas tipo draggable -->
-        <section class="seccion4-2-preguntas__tipo-draggable">
+        <section class="seccion4-2-preguntas__tipo-draggable pintar-ocultar" id="preguntas-tipo2-draggable">
             <header class="cabecera-progreso-draggable">
-                <img src="imagenes/icono-x.png" alt="icono x">
+                <img class="x regresar" src="imagenes/icono-x.png" alt="icono x">
                 <div class="barra-draggable"></div>
-                <img src="imagenes/logo-corazon.png" alt="icono corazon">
+                <img class="corazon" src="imagenes/logo-corazon.png" alt="icono corazon">
                 <span>4</span>
             </header>
             <div class="enunciado-pregunta-draggable">
-                <p>Organiza la estructura de un documento HTML5</p>
+                <p></p>
             </div>
             <div class="respuestas-draggable">
 
             </div>
             <div class="preguntas-draggable">
                 <div class="img1">
-                    <img src="imagenes/icono-doctype.png" alt="logo angular">
+                    <img alt="logo angular">
                 </div>
                 <div class="img2">
-                    <img src="imagenes/icono-body.png" alt="icono html 'body'">
+                    <img  alt="icono html 'body'">
                 </div>
                 <div class="img3">
-                    <img src="imagenes/icono-head.png" alt="icono html 'head'">
+                    <img  alt="icono html 'head'">
                 </div>
                 <div class="img4">
-                    <img src="imagenes/icono-html-a.png" alt="icono html 'html abierto'">
+                    <img  alt="icono html 'html abierto'">
                 </div>
                 <div class="img5">
-                    <img src="imagenes/icono-html-c.png" alt="icono html 'html cerrado'">
+                    <img alt="icono html 'html cerrado'">
                 </div>
             </div>
             
-            <div class="boton-respuesta-draggable">
+            <div class="boton-respuesta-draggable btnComprobar">
                 COMPROBAR
             </div>
         </section>
 
         <!-- Preguntas tipo img -->
-        <section class="seccion4-3-preguntas__tipo-img">
+        <section class="seccion4-3-preguntas__tipo-img pintar-ocultar" id="preguntas-tipo3-img">
             <header class="cabecera-progreso-img">
-                <img src="imagenes/icono-x.png" alt="icono x">
+                <img class="x regresar" src="imagenes/icono-x.png" alt="icono x">
                 <div class="barra-img"></div>
-                <img src="imagenes/logo-corazon.png" alt="icono corazon">
+                <img class="corazon" src="imagenes/logo-corazon.png" alt="icono corazon">
                 <span>4</span>
             </header>
             <div class="enunciado-pregunta-img">
-                <p>¿Qué tecnología pertenece al MEVN Stack?</p>
+                <p></p>
             </div>
             <div class="opciones-img">
                 <div class="opcion-img1">
-                    <img src="imagenes/logo-angular.png" alt="logo angular">
+                    <img  alt="logo angular">
                     <figcaption>Angular</figcaption>
                 </div>
                 <div class="opcion-img2">
-                    <img src="imagenes/logo-nodeJS.png" alt="logo nodeJS">
+                    <img  alt="logo nodeJS">
                     <figcaption>NodeJS</figcaption>
                 </div>
                 <div class="opcion-img3">
-                    <img src="imagenes/logo-windows.png" alt="logo windows">
+                    <img  alt="logo windows">
                     <figcaption>Windows</figcaption>
                 </div>
                 <div class="opcion-img4">
-                    <img src="imagenes/logo-linux.png" alt="logo linux">
+                    <img  alt="logo linux">
                     <figcaption>Linux</figcaption>
                 </div>
             </div>
             
-            <div class="boton-respuesta-img">
+            <div class="boton-respuesta-img btnComprobar">
                 COMPROBAR
             </div>
         </section>
         
         <!-- Estadisticas -->
-        <section class="seccion5-estadisticas">
+        <section class="seccion5-estadisticas pintar-ocultar" id="estadisticas">
             <div class="cabecera">
                 <h1>
                     Estadísticas
@@ -222,20 +223,34 @@
             <header class="navegacion">
                 <nav class="navegacion-opciones">
                     <div class="cont-logo-home">
-                        <img src="imagenes/icono-home.png" alt="">
+                        <img src="imagenes/icono-home.png" alt="" id="btnE_Home">
                     </div>
                     <div class="cont-logo-estadisticas">
-                        <img src="imagenes/icono-estadisticas.png" alt="">
+                        <img src="imagenes/icono-estadisticas.png" alt="" id="btnE_Estadisticas">
                     </div>
                     <div class="cont-logo-perfil">
-                        <img src="imagenes/icono-perfil.png" alt="">
+                        <img src="imagenes/icono-perfil.png" alt="" id="btnE_Perfil">
                     </div>
                 </nav>
             </header>
         </section>
 
         <!-- Perfil -->
-        <section class="seccion6-perfil">
+        <section class="seccion6-perfil pintar-ocultar" id="perfil">
+            <p style="font-size: 40px;">Sección en mantenimiento</p>
+            <header class="navegacion">
+                <nav class="navegacion-opciones">
+                    <div class="cont-logo-home">
+                        <img src="imagenes/icono-home.png" alt="" id="btnP_Home">
+                    </div>
+                    <div class="cont-logo-estadisticas">
+                        <img src="imagenes/icono-estadisticas.png" alt="" id="btnP_Estadisticas">
+                    </div>
+                    <div class="cont-logo-perfil">
+                        <img src="imagenes/icono-perfil.png" alt="" id="btnP_Perfil">
+                    </div>
+                </nav>
+            </header>
         </section>
     </div>
     

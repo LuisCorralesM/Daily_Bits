@@ -1,0 +1,21 @@
+:root{
+    --hover1-black: rgb(40, 40, 41);
+    --hover2-green: rgba(44, 182, 125, 1);
+    --hover3-black: rgb(26, 25, 25);
+
+}
+
+/* Seccion 3 HOME ------------------------------------------------------------------------------------------------------------------*/
+.lenguaje-html > img:hover,
+.lenguaje-css > img:hover,
+.lenguaje-js > img:hover{
+    background-color: var(--hover1-black);
+}
+
+.cont-logo-home:hover > img,
+.cont-logo-estadisticas:hover,
+.cont-logo-perfil:hover
+{
+    background-color: var(--hover3-black);
+}
+
