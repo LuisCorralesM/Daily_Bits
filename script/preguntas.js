@@ -1,11 +1,14 @@
-export {listarPreguntasHTML}
-import { preguntas } from "./bdPraguntas.js"
+export {PreguntasAleatoriasHTML}
+import { preguntasHTML } from "./bdPraguntas.js"
 // Secciones
 const 
 home = document.querySelector('#home'),
+estadisticas = document.querySelector('#estadisticas'),
 preguntasRange = document.querySelector('#preguntas-tipo1-range'),
 preguntasDraggable = document.querySelector('#preguntas-tipo2-draggable'),
-preguntasImg = document.querySelector('#preguntas-tipo3-img') 
+preguntasImg = document.querySelector('#preguntas-tipo3-img'),
+mensajeExito = document.querySelectorAll('.continuar'),
+bntContinuar = document.querySelectorAll('.btnContinuar')
 // Contenido Preguntas-range
 const
 parrafoPreguntaRange = document.querySelector('.enunciado-pregunta p'),
@@ -28,76 +31,109 @@ opcionImg2 = document.querySelector('.opcion-img2 img'),
 opcionImg3 = document.querySelector('.opcion-img3 img'),
 opcionImg4 = document.querySelector('.opcion-img4 img')
 
-// Metodos
+// Metodo para navegar entre Home/Estadisticas/Perfil
 const
 pintarOcultar = (x,y)=>{
   x.classList.toggle('pintar-ocultar')
   y.classList.toggle('pintar-ocultar')
 }
 
-// Listar preguntas para HTML
-const listarPreguntasHTML = ()=>{
-  let
-  orden = [],
-  r
-  document.addEventListener('click', (e)=>{
-    e.preventDefault()
-    // Puse la clase btnComprobar en el html a todos los botones de preguntas
-    if(e.target.matches('.btnComprobar')){
+// Metodo para regresar al HOME desde categoría HTML
+document.addEventListener('click', (e)=>{
+  if(e.target.matches('.regresar')){
+    preguntasDraggable.style.display = 'none'
+    preguntasImg.style.display = 'none'
+    preguntasRange.style.display = 'none'   
+    pintarOcultar(preguntasRange,home)
+  }
+})
+// En el arreglo orden se guardan las preguntas que ya salieron, y se comparan con la r (de random) para evitar que se repitan las preguntas. cuando el array 'orden' tiene el mismo length que el obj Preguntas, significa que ya se mostraron todas las preguntas.
+let
+orden = [],
+r
+
+const 
+  tipoRange = (pregunta,r)=>{
+  parrafoPreguntaRange.textContent = pregunta[r].enunciado
+  opcionRespuesta1.textContent = pregunta[r].opcion1
+  opcionRespuesta2.textContent = pregunta[r].opcion2
+  opcionRespuesta3.textContent = pregunta[r].opcion3  
+
+  preguntasDraggable.style.display = 'none'
+  preguntasImg.style.display = 'none'
+  preguntasRange.style.display = 'block'
+},
+tipoDraggable = (pregunta,r)=>{
+  parrafoPreguntaDraggable.textContent = pregunta[r].enunciado
+  img1.setAttribute('src', pregunta[r].src1)
+  img2.setAttribute('src', pregunta[r].src2)
+  img3.setAttribute('src', pregunta[r].src3)
+  img4.setAttribute('src', pregunta[r].src4)
+  img5.setAttribute('src', pregunta[r].src5)
+
+  preguntasDraggable.style.display = 'block'
+  preguntasImg.style.display = 'none'
+  preguntasRange.style.display = 'none'
+
+},
+tipoImg = (pregunta,r)=>{
+  parrafoPreguntaImg.textContent = pregunta[r].enunciado
+  opcionImg1.setAttribute('src', pregunta[r].src1)
+  opcionImg2.setAttribute('src', pregunta[r].src2)
+  opcionImg3.setAttribute('src', pregunta[r].src3)
+  opcionImg4.setAttribute('src', pregunta[r].src4)
+
+  preguntasDraggable.style.display = 'none'
+  preguntasImg.style.display = 'block'
+  preguntasRange.style.display = 'none'
+}
+
+// Preguntas Aleatorias
+const PreguntasAleatoriasHTML = ()=>{
       do{
-        r=Math.floor(Math.random()*preguntas.length)
+        r=Math.floor(Math.random()*preguntasHTML.length) 
       } while(orden.indexOf(r)>=0){
-        if(preguntas[r].tipo == 'range'){
-          parrafoPreguntaRange.textContent = preguntas[r].enunciado
-          opcionRespuesta1.textContent = preguntas[r].opcion1
-          opcionRespuesta2.textContent = preguntas[r].opcion2
-          opcionRespuesta3.textContent = preguntas[r].opcion3  
-
-          preguntasDraggable.style.display = 'none'
-          preguntasImg.style.display = 'none'
-          preguntasRange.style.display = 'block'
+        console.log(orden.indexOf(r));
+        if(preguntasHTML[r].tipo == 'range'){
+          tipoRange(preguntasHTML,r)
         }
-        if(preguntas[r].tipo == 'draggable'){
-          parrafoPreguntaDraggable.textContent = preguntas[r].enunciado
-          img1.setAttribute('src', preguntas[r].src1)
-          img2.setAttribute('src', preguntas[r].src2)
-          img3.setAttribute('src', preguntas[r].src3)
-          img4.setAttribute('src', preguntas[r].src4)
-          img5.setAttribute('src', preguntas[r].src5)
-
-          preguntasDraggable.style.display = 'block'
-          preguntasImg.style.display = 'none'
-          preguntasRange.style.display = 'none'
+        if(preguntasHTML[r].tipo == 'draggable'){
+          tipoDraggable(preguntasHTML,r)
         }
-        if(preguntas[r].tipo == 'img'){
-          parrafoPreguntaImg.textContent = preguntas[r].enunciado
-          opcionImg1.setAttribute('src', preguntas[r].src1)
-          opcionImg2.setAttribute('src', preguntas[r].src2)
-          opcionImg3.setAttribute('src', preguntas[r].src3)
-          opcionImg4.setAttribute('src', preguntas[r].src4)
-
-          preguntasDraggable.style.display = 'none'
-          preguntasImg.style.display = 'block'
-          preguntasRange.style.display = 'none'
+        if(preguntasHTML[r].tipo == 'img'){
+          tipoImg(preguntasHTML,r)
         }
         orden.push(r)
         // console.log(preguntas[r]);
         // console.log(orden);
   
-          if(orden.length == preguntas.length){
-            console.log('fin');
-            orden = []
-          }  
-      }   
-    } 
-  })
+        if(orden.length == preguntasHTML.length){
+          console.log('fin');
+          orden = []
+          preguntasDraggable.style.display = 'none'
+          preguntasImg.style.display = 'none'
+          preguntasRange.style.display = 'none'
+          estadisticas.classList.toggle('pintar-ocultar')
+        }  
+      } 
 
 }
 
-// Metodo para regresar al HOME
+// Listar preguntas para HTML
 document.addEventListener('click', (e)=>{
-    if(e.target.matches('.regresar')){
-        pintarOcultar(preguntasRange,home)
-    }
+  e.preventDefault()
+  e.stopPropagation()
+  // Puse la clase btnComprobar en el html a todos los botones de preguntas
+  if(e.target.matches('.btnComprobar')){
+    mensajeExito.forEach(mensaje =>{
+      mensaje.style.display = 'block'
+    })
+  }
+  if(e.target.matches('.btnContinuar')){
+    mensajeExito.forEach(mensaje =>{
+      mensaje.style.display = 'none'
+      })  
+    PreguntasAleatoriasHTML()
+  }
 })
 

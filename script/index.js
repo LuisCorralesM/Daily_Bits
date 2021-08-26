@@ -1,5 +1,5 @@
 // Modulos JS
-import {listarPreguntasHTML} from './preguntas.js'
+import {PreguntasAleatoriasHTML} from './preguntas.js'
 // Secciones
 const 
 bienvenida = document.querySelector('#bienvenida'),
@@ -12,7 +12,7 @@ estadisticas = document.querySelector('#estadisticas'),
 perfil = document.querySelector('#perfil')
 
 
-// Metodos
+// Metodo para navegar entre Home/Estadisticas/Perfil
 const
 pintarOcultar = (x,y)=>{
   x.classList.toggle('pintar-ocultar')
@@ -20,13 +20,14 @@ pintarOcultar = (x,y)=>{
 }
 
 setTimeout(() => {
-  pintarOcultar(bienvenida,login)
-  setTimeout(() => {
-    pintarOcultar(login,home)
-  }, 1000);
+  pintarOcultar(bienvenida,home)
+  // setTimeout(() => {
+  //   pintarOcultar(login,home)
+  // }, 1000);
 }, 1000);
 
 document.addEventListener('click', (e)=>{
+  e.stopPropagation()
   // nevegar entre Home/Estadisticas/Perfil
   // home-estadisticas/pefil
   if(e.target.matches('#btnH_Estadisticas')){
@@ -55,7 +56,7 @@ document.addEventListener('click', (e)=>{
   // home-html
   if(e.target.matches('#btn-html')){
     pintarOcultar(home,preguntasRange)
-    listarPreguntasHTML()
+    PreguntasAleatoriasHTML()
   }
 //  
 

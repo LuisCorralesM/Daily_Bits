@@ -1,5 +1,5 @@
-export {preguntas}
-const preguntas = [
+export {preguntasHTML}
+const preguntasHTML = [
     { 
       tipo: 'range',
       enunciado: '¿Qué etiqueta HTML nos sirve para incluir archivos de JavaScript?',
@@ -38,5 +38,12 @@ const preguntas = [
       src3: "imagenes/logo-windows.png",
       src4: "imagenes/logo-linux.png"
     },  
-  
+    {
+      tipo: 'img',
+      enunciado: '¿Cuál es un FrameWork de JavaScript?',
+      src1: "imagenes/logo-angular.png",
+      src2: "imagenes/logo-nodeJS.png",
+      src3: "imagenes/logo-windows.png",
+      src4: "imagenes/logo-linux.png"
+    },  
   ]
