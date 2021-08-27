@@ -123,8 +123,28 @@ const PreguntasAleatoriasHTML = ()=>{
 document.addEventListener('click', (e)=>{
   e.preventDefault()
   e.stopPropagation()
+
   // Puse la clase btnComprobar en el html a todos los botones de preguntas
+  let elemento
+  let respuesta
+
+  if( !(e.target.matches('.btnComprobar')) && !(e.target.matches('#btn-html')) ){
+      elemento = e.target  
+      respuesta = elemento.textContent
+
+
+      // if(respuesta == preguntasHTML.respuesta){
+      //     console.log('respuesta correcta');
+      //   }else{
+      //     console.log('respuesta incorrecta');
+      //   }
+    } 
+    console.log(respuesta);
+    console.log(preguntasHTML[r].respuesta);
+
+// ----
   if(e.target.matches('.btnComprobar')){
+    console.log(preguntasHTML[r]);
     mensajeExito.forEach(mensaje =>{
       mensaje.style.display = 'block'
     })
