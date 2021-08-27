@@ -119,35 +119,42 @@ const PreguntasAleatoriasHTML = ()=>{
 
 }
 
+let respuCorrecta;
+
 // Listar preguntas para HTML
 document.addEventListener('click', (e)=>{
   e.preventDefault()
   e.stopPropagation()
 
   // Puse la clase btnComprobar en el html a todos los botones de preguntas
-  let elemento
-  let respuesta
-
   if( !(e.target.matches('.btnComprobar')) && !(e.target.matches('#btn-html')) ){
-      elemento = e.target  
-      respuesta = elemento.textContent
+      let elemento = parseInt(e.target.dataset.id) 
+      if(elemento === preguntasHTML[r].respuesta){
+        console.log('respuesta correcta');
+        respuCorrecta = true;
+      }else{
+        console.log('respuesta incorrecta');
+        respuCorrecta = false
+      }
+  } 
+})
 
 
-      // if(respuesta == preguntasHTML.respuesta){
-      //     console.log('respuesta correcta');
-      //   }else{
-      //     console.log('respuesta incorrecta');
-      //   }
-    } 
-    console.log(respuesta);
-    console.log(preguntasHTML[r].respuesta);
+document.addEventListener('click', (e)=>{
+  e.preventDefault()
+  e.stopPropagation()
 
-// ----
   if(e.target.matches('.btnComprobar')){
-    console.log(preguntasHTML[r]);
-    mensajeExito.forEach(mensaje =>{
-      mensaje.style.display = 'block'
-    })
+    console.log(respuCorrecta);
+    if(respuCorrecta){
+      mensajeExito.forEach(mensaje =>{
+        mensaje.style.display = 'block'
+      })
+    }
+    if(!respuCorrecta){
+      // si me queda tiempo, en la data pondré una pista para cada pregunta la cuál se mostrará por aquí
+      alert('respuesta incorrecta')
+    }
   }
   if(e.target.matches('.btnContinuar')){
     mensajeExito.forEach(mensaje =>{
@@ -156,4 +163,6 @@ document.addEventListener('click', (e)=>{
     PreguntasAleatoriasHTML()
   }
 })
+
+
 
