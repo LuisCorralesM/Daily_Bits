@@ -1,7 +1,7 @@
 :root{
     --hover1-black: rgb(40, 40, 41);
     --hover2-green: rgba(44, 182, 125, 1);
-    --hover3-black: rgb(26, 25, 25);
+    --hover3-black: rgb(48, 47, 47);
 
 }
 
@@ -9,13 +9,49 @@
 .lenguaje-html > img:hover,
 .lenguaje-css > img:hover,
 .lenguaje-js > img:hover{
-    background-color: var(--hover1-black);
+    opacity: 0.5;
 }
 
-.cont-logo-home:hover > img,
-.cont-logo-estadisticas:hover,
-.cont-logo-perfil:hover
+.cont-logo-home img:hover,
+.cont-logo-estadisticas > img:hover,
+.cont-logo-perfil > img:hover
 {
-    background-color: var(--hover3-black);
+    opacity: 0.5;
 }
 
+/* Seccion 4-1 preguntas tipo range ------------------------------------------------------------------------------------------------------------------*/
+.opcion1:hover,
+.opcion2:hover,
+.opcion3:hover
+{
+    border: 2px solid var(--hover2-green);
+    cursor: pointer;
+}
+
+.opcion1:hover > .circulito,
+.opcion2:hover > .circulito,
+.opcion3:hover > .circulito
+{
+    background-color: var(--hover2-green);
+}
+
+/* Seccion 4-2 preguntas tipo draggable ------------------------------------------------------------------------------------------------------------------*/
+.img1 > img:hover,
+.img2 > img:hover,
+.img3 > img:hover,
+.img4 > img:hover,
+.img5 > img:hover
+{
+    border-radius: 16px;
+    border: 2px solid green;
+    cursor: pointer;
+}
+
+/* Seccion 4-3 Preguntas tipo img ------------------------------------------------------------------------------------------------------------------*/
+.opcion-img1:hover,
+.opcion-img2:hover,
+.opcion-img3:hover,
+.opcion-img4:hover
+{
+    border: 3px solid var(--hover2-green);
+}

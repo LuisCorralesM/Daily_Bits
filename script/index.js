@@ -26,6 +26,8 @@ setTimeout(() => {
   // }, 1000);
 }, 1000);
 
+
+
 document.addEventListener('click', (e)=>{
   e.stopPropagation()
   // nevegar entre Home/Estadisticas/Perfil

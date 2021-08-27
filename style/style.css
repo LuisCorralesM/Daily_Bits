@@ -277,6 +277,14 @@
     color: var(--color5-white);
 }
 
+.circulito{
+    display: inline;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color5-white);
+    border-radius: 50%;
+}
+
 .boton-respuesta-range{
     position: absolute;
     bottom: 16px;
@@ -354,6 +362,7 @@
 {
     margin: 5px 5px 0 0;
     height: 35px;
+    display: inline-block;
 }
 
 .img1 > img{

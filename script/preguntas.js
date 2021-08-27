@@ -1,5 +1,6 @@
 export {PreguntasAleatoriasHTML}
 import { preguntasHTML } from "./bdPraguntas.js"
+import {draggable} from './draggable.js'
 // Secciones
 const 
 home = document.querySelector('#home'),
@@ -93,7 +94,6 @@ const PreguntasAleatoriasHTML = ()=>{
       do{
         r=Math.floor(Math.random()*preguntasHTML.length) 
       } while(orden.indexOf(r)>=0){
-        console.log(orden.indexOf(r));
         if(preguntasHTML[r].tipo == 'range'){
           tipoRange(preguntasHTML,r)
         }
@@ -113,6 +113,11 @@ const PreguntasAleatoriasHTML = ()=>{
           preguntasDraggable.style.display = 'none'
           preguntasImg.style.display = 'none'
           preguntasRange.style.display = 'none'
+          // para mostrar las respuestas buenas y malas de seccion html
+          document.querySelector('.totalRespuestas').textContent = contadorRespuestasBuenas + contadorRespuestasMalas
+          document.querySelector('.verde').textContent = contadorRespuestasBuenas
+          document.querySelector('.rojo').textContent = contadorRespuestasMalas
+
           estadisticas.classList.toggle('pintar-ocultar')
         }  
       } 
@@ -120,6 +125,8 @@ const PreguntasAleatoriasHTML = ()=>{
 }
 
 let respuCorrecta;
+let contadorRespuestasBuenas = 0;
+let contadorRespuestasMalas = 0;
 
 // Listar preguntas para HTML
 document.addEventListener('click', (e)=>{
@@ -130,10 +137,10 @@ document.addEventListener('click', (e)=>{
   if( !(e.target.matches('.btnComprobar')) && !(e.target.matches('#btn-html')) ){
       let elemento = parseInt(e.target.dataset.id) 
       if(elemento === preguntasHTML[r].respuesta){
-        console.log('respuesta correcta');
+        // console.log('respuesta correcta');
         respuCorrecta = true;
       }else{
-        console.log('respuesta incorrecta');
+        // console.log('respuesta incorrecta');
         respuCorrecta = false
       }
   } 
@@ -145,15 +152,20 @@ document.addEventListener('click', (e)=>{
   e.stopPropagation()
 
   if(e.target.matches('.btnComprobar')){
-    console.log(respuCorrecta);
+    // console.log(respuCorrecta);
     if(respuCorrecta){
+      contadorRespuestasBuenas++
+      console.log('Respuestas correctas: ' + contadorRespuestasBuenas)
       mensajeExito.forEach(mensaje =>{
         mensaje.style.display = 'block'
       })
     }
     if(!respuCorrecta){
+      contadorRespuestasMalas++
+      console.log('Respuestas incorrectas: ' + contadorRespuestasMalas)
       // si me queda tiempo, en la data pondré una pista para cada pregunta la cuál se mostrará por aquí
       alert('respuesta incorrecta')
+      PreguntasAleatoriasHTML()
     }
   }
   if(e.target.matches('.btnContinuar')){
@@ -164,5 +176,7 @@ document.addEventListener('click', (e)=>{
   }
 })
 
+// Funcion para ordenar las respuestas de tipo Draggable
+draggable(img1,img2,img3,img4,img5)
 
 
