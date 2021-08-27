@@ -1,6 +1,6 @@
 export {PreguntasAleatoriasHTML}
 import { preguntasHTML } from "./bdPraguntas.js"
-import {draggable} from './draggable.js'
+import {draggable,validadorRespuestasDraggable,convinacionRespuestas} from './draggable.js'
 // Secciones
 const 
 home = document.querySelector('#home'),
@@ -42,10 +42,12 @@ pintarOcultar = (x,y)=>{
 // Metodo para regresar al HOME desde categoría HTML
 document.addEventListener('click', (e)=>{
   if(e.target.matches('.regresar')){
+    // me sercioro de despintar todas las interfaces de preguntas
     preguntasDraggable.style.display = 'none'
     preguntasImg.style.display = 'none'
-    preguntasRange.style.display = 'none'   
-    pintarOcultar(preguntasRange,home)
+    preguntasRange.style.display = 'none'  
+    // pinto el home de nuevo 
+    home.classList.toggle('pintar-ocultar')
   }
 })
 // En el arreglo orden se guardan las preguntas que ya salieron, y se comparan con la r (de random) para evitar que se repitan las preguntas. cuando el array 'orden' tiene el mismo length que el obj Preguntas, significa que ya se mostraron todas las preguntas.
@@ -53,8 +55,17 @@ let
 orden = [],
 r
 
+// contadores para la sección html
+let 
+respuCorrecta,
+respuDraggableCorrecta,
+contadorRespuestasBuenas = 0,
+contadorRespuestasMalas = 0,
+totalRespuestas = contadorRespuestasBuenas + contadorRespuestasMalas;
+
+// Se crean funciones para imprimir las preguntas en cada interfaz teniendo encuenta que hay 3 tipos: range, draggable e img
 const 
-  tipoRange = (pregunta,r)=>{
+tipoRange = (pregunta,r)=>{
   parrafoPreguntaRange.textContent = pregunta[r].enunciado
   opcionRespuesta1.textContent = pregunta[r].opcion1
   opcionRespuesta2.textContent = pregunta[r].opcion2
@@ -93,7 +104,9 @@ tipoImg = (pregunta,r)=>{
 const PreguntasAleatoriasHTML = ()=>{
       do{
         r=Math.floor(Math.random()*preguntasHTML.length) 
-      } while(orden.indexOf(r)>=0){
+      } while(orden.indexOf(r)>=0)
+      
+      console.log(r);
         if(preguntasHTML[r].tipo == 'range'){
           tipoRange(preguntasHTML,r)
         }
@@ -114,19 +127,14 @@ const PreguntasAleatoriasHTML = ()=>{
           preguntasImg.style.display = 'none'
           preguntasRange.style.display = 'none'
           // para mostrar las respuestas buenas y malas de seccion html
-          document.querySelector('.totalRespuestas').textContent = contadorRespuestasBuenas + contadorRespuestasMalas
+          document.querySelector('.totalRespuestas').textContent = totalRespuestas
           document.querySelector('.verde').textContent = contadorRespuestasBuenas
           document.querySelector('.rojo').textContent = contadorRespuestasMalas
 
           estadisticas.classList.toggle('pintar-ocultar')
         }  
-      } 
 
 }
-
-let respuCorrecta;
-let contadorRespuestasBuenas = 0;
-let contadorRespuestasMalas = 0;
 
 // Listar preguntas para HTML
 document.addEventListener('click', (e)=>{
@@ -151,16 +159,61 @@ document.addEventListener('click', (e)=>{
   e.preventDefault()
   e.stopPropagation()
 
-  if(e.target.matches('.btnComprobar')){
-    // console.log(respuCorrecta);
-    if(respuCorrecta){
+  // estas validaciones solo sirven para preguntas tipo img y range
+  if(e.target.matches('.btnComprobar')){    
+      // console.log(respuCorrecta);
+      if(respuCorrecta){
+        contadorRespuestasBuenas++
+        console.log('Respuestas correctas: ' + contadorRespuestasBuenas)
+        mensajeExito.forEach(mensaje =>{
+          mensaje.style.display = 'block'
+        })
+      }
+      if(!respuCorrecta){
+        contadorRespuestasMalas++
+        console.log('Respuestas incorrectas: ' + contadorRespuestasMalas)
+        // si me queda tiempo, en la data pondré una pista para cada pregunta la cuál se mostrará por aquí
+        alert('respuesta incorrecta')
+        PreguntasAleatoriasHTML()
+      }
+  }
+  // -------------------------------------------------------------------------------------------------------------
+  // validacion para preguntas de tipo draggable
+  if(e.target.matches('.btnComprobar-draggable')){
+    console.log('btn comprobar pulsado');
+    validadorRespuestasDraggable()
+
+    console.log(convinacionRespuestas);
+    console.log(preguntasHTML[r].respuesta);
+
+    let arrayResp = preguntasHTML[r].respuesta
+    console.log(arrayResp);
+
+    for(let i=0; i<arrayResp.length; i++){
+      let
+      posicion1 = convinacionRespuestas[i],
+      posicion2 = arrayResp[i],
+      comparacion = posicion1-posicion2;
+
+      console.log('posi1: ' + posicion1 + ' posi2: ' + posicion2 + ' comparacion: ' + comparacion);
+
+      if(comparacion === 0){
+        respuDraggableCorrecta = true
+      }else{
+        respuDraggableCorrecta = false
+        break
+      }
+    }
+
+    console.log(respuDraggableCorrecta);
+    if(respuDraggableCorrecta){
       contadorRespuestasBuenas++
       console.log('Respuestas correctas: ' + contadorRespuestasBuenas)
       mensajeExito.forEach(mensaje =>{
         mensaje.style.display = 'block'
       })
     }
-    if(!respuCorrecta){
+    if(!respuDraggableCorrecta){
       contadorRespuestasMalas++
       console.log('Respuestas incorrectas: ' + contadorRespuestasMalas)
       // si me queda tiempo, en la data pondré una pista para cada pregunta la cuál se mostrará por aquí
@@ -168,11 +221,15 @@ document.addEventListener('click', (e)=>{
       PreguntasAleatoriasHTML()
     }
   }
+// -------------------------------------------------------------------------------------------------------------
+  // Si la respuesta fué buena, habrá aparecido el boton continuar
   if(e.target.matches('.btnContinuar')){
+    // se oculta el mensaje de exito y se avanza a la siguiente pregunta
     mensajeExito.forEach(mensaje =>{
       mensaje.style.display = 'none'
       })  
     PreguntasAleatoriasHTML()
+    // aqui voy a invocar una función que guarde el avance en porcentaje y luego lo use para las barras de progreso
   }
 })
 

@@ -57,7 +57,8 @@ document.addEventListener('click', (e)=>{
   // Navegar entre Lenguajes HMTL/CSS/JS
   // home-html
   if(e.target.matches('#btn-html')){
-    pintarOcultar(home,preguntasRange)
+    // solo despinto el home para que luego se pinte la pregunta que salga del random
+    home.classList.toggle('pintar-ocultar')
     PreguntasAleatoriasHTML()
   }
 //  
