@@ -1,6 +1,16 @@
 export {draggable,validadorRespuestasDraggable,convinacionRespuestas}
 
 const divRespuestas = document.querySelector('.respuestas-draggable')
+const convinacionRespuestas = []
+
+const validadorRespuestasDraggable = ()=>{
+    const respuestas = document.querySelectorAll('.respuestas-draggable div')
+
+    respuestas.forEach(nodoClases =>{
+        const clases = nodoClases.classList[2]
+        convinacionRespuestas.push(parseInt(clases))
+    })
+}
 
 const draggable = (img1,img2,img3,img4,img5)=>{
     document.addEventListener('click', e =>{
@@ -52,13 +62,3 @@ const draggable = (img1,img2,img3,img4,img5)=>{
     })
 }
 
-const convinacionRespuestas = []
-const validadorRespuestasDraggable = ()=>{
-    const respuestas = document.querySelectorAll('.respuestas-draggable div')
-
-    respuestas.forEach(nodoClases =>{
-        const clases = nodoClases.classList[2]
-        convinacionRespuestas.push(parseInt(clases))
-    })
-    // console.log(convinacionRespuestas);
-}
