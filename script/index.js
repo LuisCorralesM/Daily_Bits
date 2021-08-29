@@ -11,14 +11,6 @@ home = document.querySelector('#home'),
 estadisticas = document.querySelector('#estadisticas'),
 perfil = document.querySelector('#perfil')
 
-// IMGs Draggable
-const
-img1 = document.querySelector('.img1 img'),
-img2 = document.querySelector('.img2 img'),
-img3 = document.querySelector('.img3 img'),
-img4 = document.querySelector('.img4 img'),
-img5 = document.querySelector('.img5 img')
-
 // Metodo para navegar entre Home/Estadisticas/Perfil
 const
 pintarOcultar = (x,y)=>{
@@ -74,8 +66,8 @@ document.addEventListener('click', (e)=>{
       categoriaLenguaje(e,preguntasHTML)
     })
     // Funcion para ordenar las respuestas de tipo Draggable
-    draggable(img1,img2,img3,img4,img5,preguntasHTML)
-    
+    draggable(preguntasHTML)
+    //img1,img2,img3,img4,img5,
   }
 
 // home-css
@@ -90,8 +82,8 @@ if(e.target.matches('#btn-css')){
     categoriaLenguaje(e,preguntasCSS)
   })
   // Funcion para ordenar las respuestas de tipo Draggable
-  draggable(img1,img2,img3,img4,img5,preguntasCSS)
-  
+  draggable(preguntasCSS)
+  //img1,img2,img3,img4,img5,
 }
 
 

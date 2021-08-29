@@ -1,7 +1,8 @@
 export {draggable,ordenRespuestasDraggable,convinacionRespuestas}
 
+
 const divRespuestas = document.querySelector('.respuestas-draggable')
-const convinacionRespuestas = []
+let convinacionRespuestas = []
 
 const ordenRespuestasDraggable = ()=>{
     const respuestas = document.querySelectorAll('.respuestas-draggable div')
@@ -13,10 +14,22 @@ const ordenRespuestasDraggable = ()=>{
     console.log(convinacionRespuestas);
 }
 
-const draggable = (img1,img2,img3,img4,img5,lenguaje)=>{
+const draggable = (lenguaje)=>{
+    //img1,img2,img3,img4,img5,
+
     divRespuestas.innerHTML = ""
 
     document.addEventListener('click', e =>{
+        const
+        img1 = document.querySelector('.img1 img'),
+        img2 = document.querySelector('.img2 img'),
+        img3 = document.querySelector('.img3 img'),
+        img4 = document.querySelector('.img4 img'),
+        img5 = document.querySelector('.img5 img')
+        // console.log(lenguaje);
+        // console.log(lenguaje[3]);
+        // console.log(lenguaje[3].src1);
+
         if(e.target.matches('.img1-1 img')){
             img1.style.display = 'none'
             divRespuestas.insertAdjacentHTML('beforeend', `

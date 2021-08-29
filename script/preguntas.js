@@ -19,11 +19,7 @@ opcionRespuesta3 = document.querySelector('.preguntas .opcion3 p')
 // Contenido Preguntas-draggable
 const
 parrafoPreguntaDraggable = document.querySelector('.enunciado-pregunta-draggable p'),
-img1 = document.querySelector('.img1 img'),
-img2 = document.querySelector('.img2 img'),
-img3 = document.querySelector('.img3 img'),
-img4 = document.querySelector('.img4 img'),
-img5 = document.querySelector('.img5 img')
+divPreguntas = document.querySelector('.preguntas-draggable')
 // Contenido Preguntas-img
 const
 parrafoPreguntaImg = document.querySelector('.enunciado-pregunta-img p'),
@@ -52,8 +48,8 @@ let vidas = 4
 
 // contadores de respuestas
 let 
-respuCorrecta,
-respuDraggableCorrecta,
+respuCorrecta = false,
+respuDraggableCorrecta = false,
 contadorRespuestasBuenas = 0,
 contadorRespuestasMalas = 0;
 
@@ -79,12 +75,29 @@ tipoDraggable = (pregunta,r)=>{
   let spanVidasDraggable = document.querySelectorAll('.vidas')
   spanVidasDraggable[1].textContent = vidas
 
+  divPreguntas.innerHTML = `
+    <div class="img1 img1-1">
+    <img src="${pregunta[r].src1}">
+    </div>
+    <div class="img2 img2-2">
+      <img src="${pregunta[r].src2}">
+    </div>
+    <div class="img3 img3-3">
+      <img src="${pregunta[r].src3}">
+    </div>
+    <div class="img4 img4-4">
+      <img src="${pregunta[r].src4}">
+    </div>
+    <div class="img5 img5-5">
+      <img src="${pregunta[r].src5}">
+    </div>
+  `
   parrafoPreguntaDraggable.textContent = pregunta[r].enunciado
-  img1.setAttribute('src', pregunta[r].src1)
-  img2.setAttribute('src', pregunta[r].src2)
-  img3.setAttribute('src', pregunta[r].src3)
-  img4.setAttribute('src', pregunta[r].src4)
-  img5.setAttribute('src', pregunta[r].src5)
+  // img1.setAttribute('src', pregunta[r].src1)
+  // img2.setAttribute('src', pregunta[r].src2)
+  // img3.setAttribute('src', pregunta[r].src3)
+  // img4.setAttribute('src', pregunta[r].src4)
+  // img5.setAttribute('src', pregunta[r].src5)
 
   preguntasDraggable.style.display = 'block'
   preguntasImg.style.display = 'none'
@@ -189,7 +202,7 @@ const validarTipoRangeEImg = (e, lenguaje)=>{
 // Se valida y se toman acciones frente a la pregunta de tipo Draggable
 const validarTipoDraggable = (e,lenguaje)=>{
   let arrayResp = lenguaje[r].respuesta
-  // console.log(arrayResp);
+  console.log(arrayResp);
 
   for(let i=0; i<arrayResp.length; i++){
     let
@@ -257,6 +270,7 @@ const siguiente = (lenguaje)=>{
 //salir de preguntas y pasar a estadisticas
 const terminarPreguntas = ()=>{
   orden = []
+  // convinacionRespuestas = []
   preguntasDraggable.style.display = 'none'
   preguntasImg.style.display = 'none'
   preguntasRange.style.display = 'none'
@@ -265,6 +279,16 @@ const terminarPreguntas = ()=>{
   document.querySelector('.verde').textContent = contadorRespuestasBuenas
   document.querySelector('.rojo').textContent = contadorRespuestasMalas
   estadisticas.classList.toggle('pintar-ocultar')
+  console.log('fin categoría');
+  console.log(orden);
+
+  mensajeExito.forEach(mensaje =>{
+    mensaje.style.display = 'none'
+    })  
+
+
+  console.log(respuCorrecta);
+  console.log(respuDraggableCorrecta);
 }
 
 // Toma casi todas las funciones anteriores y les pasa como parametro "lenguaje" la bd con las preguntas según la categoría
