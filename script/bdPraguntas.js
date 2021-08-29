@@ -1,6 +1,6 @@
 export {preguntasHTML, preguntasCSS}
-const 
-preguntasHTML = [
+
+const preguntasHTML = [
   { 
     tipo: 'range',
     enunciado: '¿Qué etiqueta HTML nos sirve para incluir archivos de JavaScript?',
@@ -53,8 +53,9 @@ preguntasHTML = [
     src4: "imagenes/logo-linux.png",
     respuesta: 1
   }
-],
-preguntasCSS = [
+]
+
+const preguntasCSS = [
   { 
     tipo: 'range',
     enunciado: '¿Qué tipo se selector css representa el caracter . ?',

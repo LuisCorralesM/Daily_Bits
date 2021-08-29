@@ -1,9 +1,9 @@
-export {draggable,validadorRespuestasDraggable,convinacionRespuestas}
+export {draggable,ordenRespuestasDraggable,convinacionRespuestas}
 
 const divRespuestas = document.querySelector('.respuestas-draggable')
 const convinacionRespuestas = []
 
-const validadorRespuestasDraggable = ()=>{
+const ordenRespuestasDraggable = ()=>{
     const respuestas = document.querySelectorAll('.respuestas-draggable div')
 
     respuestas.forEach(nodoClases =>{
