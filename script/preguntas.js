@@ -1,6 +1,6 @@
-export {PreguntasAleatoriasHTML}
-import { preguntasHTML, preguntasCSS } from "./bdPraguntas.js"
+export {PreguntasAleatoriasHTML,categoriaLenguaje}
 import {draggable,ordenRespuestasDraggable,convinacionRespuestas} from './draggable.js'
+
 // Secciones
 const 
 home = document.querySelector('#home'),
@@ -267,33 +267,27 @@ const terminarPreguntas = ()=>{
   estadisticas.classList.toggle('pintar-ocultar')
 }
 
+// Toma casi todas las funciones anteriores y les pasa como parametro "lenguaje" la bd con las preguntas según la categoría
+const categoriaLenguaje = (e,lenguaje)=>{
+      // Se lleva el registro de la ultima opción de respuesta clickeada
+      ultimoClick(e,lenguaje)
+      // Se valida si la respuesta fue correcta
+      validarTipoRangeEImg(e,lenguaje)
+  
+      if(e.target.matches('.btnComprobar-draggable')){
+        ordenRespuestasDraggable()
+  
+        validarTipoDraggable(e,lenguaje)
+      }
+  
+  
+      // Si la respuesta fué buena, habrá aparecido el boton continuar
+      if(e.target.matches('.btnContinuar')){
+        // se oculta el mensaje de exito y se avanza a la siguiente pregunta
+        siguiente(lenguaje)
+        // aqui voy a invocar una función que guarde el avance en porcentaje y luego lo use para las barras de progreso
+      }
 
-/* -------------------------------------------------EJECUCUIÓN-------------------------------------------------- */
-document.addEventListener('click', (e)=>{
-  e.preventDefault()
-  e.stopPropagation()
-
-    // Se lleva el registro de la ultima opción de respuesta clickeada
-    ultimoClick(e,preguntasCSS)
-    // Se valida si la respuesta fue correcta
-    validarTipoRangeEImg(e,preguntasCSS)
-
-    if(e.target.matches('.btnComprobar-draggable')){
-      ordenRespuestasDraggable()
-
-      validarTipoDraggable(e,preguntasCSS)
-    }
-
-
-    // Si la respuesta fué buena, habrá aparecido el boton continuar
-    if(e.target.matches('.btnContinuar')){
-      // se oculta el mensaje de exito y se avanza a la siguiente pregunta
-      siguiente(preguntasCSS)
-      // aqui voy a invocar una función que guarde el avance en porcentaje y luego lo use para las barras de progreso
-    }
-})
-
-// Funcion para ordenar las respuestas de tipo Draggable
-draggable(img1,img2,img3,img4,img5)
+}
 
 

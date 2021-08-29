@@ -84,8 +84,8 @@ const preguntasCSS = [
       tipo: 'draggable',
       enunciado: 'Organiza la estructura css',
       src1: "imagenes/selector.png",
-      src2: "imagenes/propiedad.png",
-      src3: "imagenes/valor.png",
+      src2: "imagenes/valor.png",
+      src3: "imagenes/propiedad.png",
       src4: "imagenes/llave-abierta.png",
       src5: "imagenes/llave-cerrada.png",
       respuesta: [1,4,3,2,5]
@@ -106,6 +106,6 @@ const preguntasCSS = [
     src2: "imagenes/color-fondo2.png",
     src3: "imagenes/color-fondo3.png",
     src4: "imagenes/color-fondo4.png",
-    respuesta: 1
+    respuesta: 3
   }
 ]
