@@ -155,18 +155,25 @@
     color: var(--color5-white);
 }
 
+.enunciado-home{
+    padding: 0 18px;
+    font-size: 12px;
+    height: auto;
+}
+
 .contenedor__opciones-lenguajes{
     display: grid;
     grid-template-areas: 'html html' 'css js';
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
-    height: 60vh;
+    height: calc(100vh - 136px);
     margin: 32px;
+    /* padding-bottom: ; */
 }
 
 .lenguaje-html{
     grid-area: html;
-    padding-top: 32px;
+    padding-top: 10%;
 }
 
 .lenguaje-css{
@@ -610,6 +617,10 @@
 /* @media para desktop */
 
 @media screen and (min-width: 800px) {
+.lenguaje-html{
+    padding-top: 30%;
+}
+
 .main{
     display: flex;
     justify-content: center;

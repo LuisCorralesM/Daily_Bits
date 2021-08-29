@@ -10,6 +10,7 @@
 .lenguaje-css > img:hover,
 .lenguaje-js > img:hover{
     opacity: 0.5;
+    cursor: pointer;
 }
 
 .cont-logo-home img:hover,
@@ -17,6 +18,7 @@
 .cont-logo-perfil > img:hover
 {
     opacity: 0.5;
+    cursor: pointer;    
 }
 
 /* Seccion 4-1 preguntas tipo range ------------------------------------------------------------------------------------------------------------------*/
@@ -54,4 +56,5 @@
 .opcion-img4:hover
 {
     border: 3px solid var(--hover2-green);
+    cursor: pointer;
 }

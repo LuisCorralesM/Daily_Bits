@@ -5,9 +5,6 @@ const
 bienvenida = document.querySelector('#bienvenida'),
 login = document.querySelector('#login'),
 home = document.querySelector('#home'),
-preguntasRange = document.querySelector('#preguntas-tipo1-range'),
-preguntasDraggable = document.querySelector('#preguntas-tipo2-draggable'),
-preguntasImg = document.querySelector('#preguntas-tipo3-img'),
 estadisticas = document.querySelector('#estadisticas'),
 perfil = document.querySelector('#perfil')
 

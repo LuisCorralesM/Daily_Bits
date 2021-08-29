@@ -1,5 +1,5 @@
 export {PreguntasAleatoriasHTML}
-import { preguntasHTML } from "./bdPraguntas.js"
+import { preguntasHTML, preguntasCSS } from "./bdPraguntas.js"
 import {draggable,validadorRespuestasDraggable,convinacionRespuestas} from './draggable.js'
 // Secciones
 const 
@@ -8,8 +8,7 @@ estadisticas = document.querySelector('#estadisticas'),
 preguntasRange = document.querySelector('#preguntas-tipo1-range'),
 preguntasDraggable = document.querySelector('#preguntas-tipo2-draggable'),
 preguntasImg = document.querySelector('#preguntas-tipo3-img'),
-mensajeExito = document.querySelectorAll('.continuar'),
-bntContinuar = document.querySelectorAll('.btnContinuar')
+mensajeExito = document.querySelectorAll('.continuar')
 // Contenido Preguntas-range
 const
 parrafoPreguntaRange = document.querySelector('.enunciado-pregunta p'),
@@ -31,7 +30,8 @@ opcionImg1 = document.querySelector('.opcion-img1 img'),
 opcionImg2 = document.querySelector('.opcion-img2 img'),
 opcionImg3 = document.querySelector('.opcion-img3 img'),
 opcionImg4 = document.querySelector('.opcion-img4 img')
-
+//VIDAS
+let vidas = 4
 // Metodo para regresar al HOME desde categoría HTML
 document.addEventListener('click', (e)=>{
   if(e.target.matches('.regresar')){
@@ -58,6 +58,9 @@ contadorRespuestasMalas = 0;
 // Se crean funciones para imprimir las preguntas en cada interfaz teniendo encuenta que hay 3 tipos: range, draggable e img
 const 
 tipoRange = (pregunta,r)=>{
+  let spanVidasRange = document.querySelectorAll('.vidas')
+  spanVidasRange[0].textContent = vidas
+
   parrafoPreguntaRange.textContent = pregunta[r].enunciado
   opcionRespuesta1.textContent = pregunta[r].opcion1
   opcionRespuesta2.textContent = pregunta[r].opcion2
@@ -68,6 +71,9 @@ tipoRange = (pregunta,r)=>{
   preguntasRange.style.display = 'block'
 },
 tipoDraggable = (pregunta,r)=>{
+  let spanVidasDraggable = document.querySelectorAll('.vidas')
+  spanVidasDraggable[1].textContent = vidas
+
   parrafoPreguntaDraggable.textContent = pregunta[r].enunciado
   img1.setAttribute('src', pregunta[r].src1)
   img2.setAttribute('src', pregunta[r].src2)
@@ -81,6 +87,9 @@ tipoDraggable = (pregunta,r)=>{
 
 },
 tipoImg = (pregunta,r)=>{
+  let spanVidasImg = document.querySelectorAll('.vidas')
+  spanVidasImg[2].textContent = vidas
+
   parrafoPreguntaImg.textContent = pregunta[r].enunciado
   opcionImg1.setAttribute('src', pregunta[r].src1)
   opcionImg2.setAttribute('src', pregunta[r].src2)
@@ -164,15 +173,29 @@ document.addEventListener('click', (e)=>{
           })
       }
       if(!respuCorrecta){
-        contadorRespuestasMalas++
-        console.log('Respuestas incorrectas: ' + contadorRespuestasMalas)
-        alert('respuesta incorrecta')
+          vidas--
+          contadorRespuestasMalas++
 
-        if(orden.length == preguntasHTML.length){
-          terminarPreguntas()
-        }else{
-          PreguntasAleatoriasHTML()
-        }
+          if(vidas > 0){
+            console.log(vidas);
+            
+            console.log('Respuestas incorrectas: ' + contadorRespuestasMalas)
+            alert('respuesta incorrecta')
+    
+              if(orden.length == preguntasHTML.length){
+                terminarPreguntas()
+              }else{
+                PreguntasAleatoriasHTML()
+              }  
+          }else{
+            alert('Te quedaste sin vidas, vuelve a intentarlo')
+            preguntasDraggable.style.display = 'none'
+            preguntasImg.style.display = 'none'
+            preguntasRange.style.display = 'none'    
+            home.classList.toggle('pintar-ocultar') 
+            vidas = 4   
+            orden = []
+          }
       }
   }
   // -------------------------------------------------------------------------------------------------------------
@@ -210,17 +233,29 @@ document.addEventListener('click', (e)=>{
       })
     }
     if(!respuDraggableCorrecta){
+      vidas--
       contadorRespuestasMalas++
-      console.log('Respuestas incorrectas: ' + contadorRespuestasMalas)
-      alert('respuesta incorrecta')
+      console.log(vidas);
 
-      if(orden.length == preguntasHTML.length){
-        console.log('------------la 6ta pregunta fue mala');
-        terminarPreguntas()
-      }else{
-        PreguntasAleatoriasHTML()
-      }
-
+        if(vidas > 0){
+          console.log('Respuestas incorrectas: ' + contadorRespuestasMalas)
+          alert('respuesta incorrecta')
+    
+            if(orden.length == preguntasHTML.length){
+              console.log('------------la 6ta pregunta fue mala');
+              terminarPreguntas()
+            }else{
+              PreguntasAleatoriasHTML()
+            }  
+        }else{
+          alert('Te quedaste sin vidas, vuelve a intentarlo')
+          preguntasDraggable.style.display = 'none'
+          preguntasImg.style.display = 'none'
+          preguntasRange.style.display = 'none'    
+          home.classList.toggle('pintar-ocultar') 
+          vidas = 4   
+          orden = []
+        }
     }
   }
 // -------------------------------------------------------------------------------------------------------------
