@@ -20,9 +20,9 @@ pintarOcultar = (x,y)=>{
 
 setTimeout(() => {
   pintarOcultar(bienvenida,home)
-  // setTimeout(() => {
-  //   pintarOcultar(login,home)
-  // }, 1000);
+  setTimeout(() => {
+    pintarOcultar(login,home)
+  }, 1000);
 }, 1000);
 
 document.addEventListener('click', (e)=>{
