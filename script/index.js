@@ -19,7 +19,7 @@ pintarOcultar = (x,y)=>{
 }
 
 setTimeout(() => {
-  pintarOcultar(bienvenida,home)
+  pintarOcultar(bienvenida,login)
   setTimeout(() => {
     pintarOcultar(login,home)
   }, 1000);
