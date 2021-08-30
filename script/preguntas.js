@@ -1,5 +1,4 @@
-export {PreguntasAleatoriasHTML,categoriaLenguaje}
-import {draggable,ordenRespuestasDraggable,convinacionRespuestas} from './draggable.js'
+export {PreguntasAleatoriasHTML,categoriaLenguaje,draggable}
 
 // Secciones
 const 
@@ -26,7 +25,16 @@ parrafoPreguntaImg = document.querySelector('.enunciado-pregunta-img p'),
 opcionImg1 = document.querySelector('.opcion-img1 img'),
 opcionImg2 = document.querySelector('.opcion-img2 img'),
 opcionImg3 = document.querySelector('.opcion-img3 img'),
-opcionImg4 = document.querySelector('.opcion-img4 img')
+opcionImg4 = document.querySelector('.opcion-img4 img'),
+figcaption1 = document.querySelector('.fig1'),
+figcaption2 = document.querySelector('.fig2'),
+figcaption3 = document.querySelector('.fig3'),
+figcaption4 = document.querySelector('.fig4')
+
+// Contenedor donde se muestras las opciones seleccionadas en la pregunta tipo draggable
+const divRespuestas = document.querySelector('.respuestas-draggable')
+let convinacionRespuestas = []
+
 
 // Metodo para regresar al HOME desde categoría HTML
 document.addEventListener('click', (e)=>{
@@ -114,6 +122,11 @@ tipoImg = (pregunta,r)=>{
   opcionImg3.setAttribute('src', pregunta[r].src3)
   opcionImg4.setAttribute('src', pregunta[r].src4)
 
+  figcaption1.textContent = pregunta[r].fig1
+  figcaption2.textContent = pregunta[r].fig2
+  figcaption3.textContent = pregunta[r].fig3
+  figcaption4.textContent = pregunta[r].fig4
+
   preguntasDraggable.style.display = 'none'
   preguntasImg.style.display = 'block'
   preguntasRange.style.display = 'none'
@@ -163,6 +176,7 @@ const ultimoClick = (e,lenguaje)=>{
 // Se toman acciones frente a si la respuesta fue correcta o no
 const validarTipoRangeEImg = (e, lenguaje)=>{
   if(e.target.matches('.btnComprobar')){    
+    console.log('un click en el btn comprobar');
     if(respuCorrecta){
       contadorRespuestasBuenas++
         console.log('Respuestas correctas: ' + contadorRespuestasBuenas)
@@ -175,7 +189,7 @@ const validarTipoRangeEImg = (e, lenguaje)=>{
         contadorRespuestasMalas++
 
         if(vidas > 0){
-          console.log(vidas);
+          console.log('vidas ' +vidas);
           
           console.log('Respuestas incorrectas: ' + contadorRespuestasMalas)
           alert('respuesta incorrecta')
@@ -199,8 +213,83 @@ const validarTipoRangeEImg = (e, lenguaje)=>{
 
 }
 
+// Imprime las opciones seleccionadas por el usuario en su orden correspondiente
+const draggable = (lenguaje)=>{
+  //img1,img2,img3,img4,img5,
+
+  divRespuestas.innerHTML = ""
+
+  document.addEventListener('click', e =>{
+      const
+      img1 = document.querySelector('.img1 img'),
+      img2 = document.querySelector('.img2 img'),
+      img3 = document.querySelector('.img3 img'),
+      img4 = document.querySelector('.img4 img'),
+      img5 = document.querySelector('.img5 img')
+      // console.log(lenguaje);
+      // console.log(lenguaje[3]);
+      // console.log(lenguaje[3].src1);
+
+      if(e.target.matches('.img1-1 img')){
+          img1.style.display = 'none'
+          divRespuestas.insertAdjacentHTML('beforeend', `
+          <div class="img1 deshabilitar1 1">
+              <img src="${lenguaje[3].src1}">
+          </div>
+          `)
+          document.querySelector('.deshabilitar1').classList.remove('img1-1')
+      }
+      if(e.target.matches('.img2-2 img')){
+          img2.style.display = 'none'
+          divRespuestas.insertAdjacentHTML('beforeend', `
+          <div class="img2 deshabilitar2 2">
+              <img src="${lenguaje[3].src2}">
+          </div>
+          `)
+          document.querySelector('.deshabilitar2').classList.remove('img2-2')
+      }
+      if(e.target.matches('.img3-3 img')){
+          img3.style.display = 'none'
+          divRespuestas.insertAdjacentHTML('beforeend', `
+          <div class="img3 deshabilitar3 3">
+              <img src="${lenguaje[3].src3}" >
+          </div>
+          `)
+          document.querySelector('.deshabilitar3').classList.remove('img3-3')
+      }
+      if(e.target.matches('.img4-4 img')){
+          img4.style.display = 'none'
+          divRespuestas.insertAdjacentHTML('beforeend', `
+          <div class="img4 deshabilitar4 4">
+              <img src="${lenguaje[3].src4}" >
+          </div>
+          `)
+          document.querySelector('.deshabilitar4').classList.remove('img4-4')
+      }
+      if(e.target.matches('.img5-5 img')){
+          img5.style.display = 'none'
+          divRespuestas.insertAdjacentHTML('beforeend', `
+          <div class="img5 deshabilitar5 5">
+              <img src="${lenguaje[3].src5}" >
+          </div>
+          `)
+          document.querySelector('.deshabilitar5').classList.remove('img5-5')
+      }
+  })
+}
+
+// optiene la el orden de las respuestas seleccionadas por el usuario en la catagoria de preguntas tipo draggable
+const ordenRespuestasDraggable = ()=>{
+  const respuestas = document.querySelectorAll('.respuestas-draggable div')
+
+  respuestas.forEach(nodoClases =>{
+      const clases = nodoClases.classList[2]
+      convinacionRespuestas.push(parseInt(clases))
+  })
+  console.log(convinacionRespuestas);
+}
 // Se valida y se toman acciones frente a la pregunta de tipo Draggable
-const validarTipoDraggable = (e,lenguaje)=>{
+const validarTipoDraggable = (lenguaje)=>{
   let arrayResp = lenguaje[r].respuesta
   console.log(arrayResp);
 
@@ -230,7 +319,7 @@ const validarTipoDraggable = (e,lenguaje)=>{
   if(!respuDraggableCorrecta){
     vidas--
     contadorRespuestasMalas++
-    console.log(vidas);
+    console.log('vidas ' + vidas);
 
       if(vidas > 0){
         console.log('Respuestas incorrectas: ' + contadorRespuestasMalas)
@@ -270,7 +359,7 @@ const siguiente = (lenguaje)=>{
 //salir de preguntas y pasar a estadisticas
 const terminarPreguntas = ()=>{
   orden = []
-  // convinacionRespuestas = []
+  convinacionRespuestas = []
   preguntasDraggable.style.display = 'none'
   preguntasImg.style.display = 'none'
   preguntasRange.style.display = 'none'
@@ -280,15 +369,7 @@ const terminarPreguntas = ()=>{
   document.querySelector('.rojo').textContent = contadorRespuestasMalas
   estadisticas.classList.toggle('pintar-ocultar')
   console.log('fin categoría');
-  console.log(orden);
 
-  mensajeExito.forEach(mensaje =>{
-    mensaje.style.display = 'none'
-    })  
-
-
-  console.log(respuCorrecta);
-  console.log(respuDraggableCorrecta);
 }
 
 // Toma casi todas las funciones anteriores y les pasa como parametro "lenguaje" la bd con las preguntas según la categoría
@@ -299,14 +380,17 @@ const categoriaLenguaje = (e,lenguaje)=>{
       validarTipoRangeEImg(e,lenguaje)
   
       if(e.target.matches('.btnComprobar-draggable')){
+        console.log('un click en el btn comprobar tipo draggable');
         ordenRespuestasDraggable()
   
-        validarTipoDraggable(e,lenguaje)
+        validarTipoDraggable(lenguaje)
       }
   
   
       // Si la respuesta fué buena, habrá aparecido el boton continuar
       if(e.target.matches('.btnContinuar')){
+        console.log('aqui viene la otra pregunta');
+
         // se oculta el mensaje de exito y se avanza a la siguiente pregunta
         siguiente(lenguaje)
         // aqui voy a invocar una función que guarde el avance en porcentaje y luego lo use para las barras de progreso

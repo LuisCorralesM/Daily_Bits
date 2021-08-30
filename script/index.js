@@ -1,7 +1,7 @@
 // Modulos JS
-import { preguntasHTML,preguntasCSS } from './bdPraguntas.js'
-import {PreguntasAleatoriasHTML,categoriaLenguaje} from './preguntas.js'
-import {draggable} from './draggable.js'
+import { preguntasHTML,preguntasCSS,preguntasJS} from './bdPraguntas.js'
+import {PreguntasAleatoriasHTML,categoriaLenguaje,draggable} from './preguntas.js'
+// import {draggable} from './draggable.js'
 
 // Secciones
 const 
@@ -51,7 +51,10 @@ document.addEventListener('click', (e)=>{
     pintarOcultar(perfil,estadisticas)
   }
 
-  /* -------------------------------------------------EJECUCUIÓN PREGUNTAS-------------------------------------------------- */
+})
+
+document.addEventListener('click', e=>{
+    /* -------------------------------------------------EJECUCUIÓN PREGUNTAS-------------------------------------------------- */
   // Categoría Lenguajes HMTL/CSS/JS
 
   // home-html
@@ -62,7 +65,7 @@ document.addEventListener('click', (e)=>{
     document.addEventListener('click', (e)=>{
       e.preventDefault()
       e.stopPropagation()
-    
+      
       categoriaLenguaje(e,preguntasHTML)
     })
     // Funcion para ordenar las respuestas de tipo Draggable
@@ -70,22 +73,44 @@ document.addEventListener('click', (e)=>{
     //img1,img2,img3,img4,img5,
   }
 
-// home-css
-if(e.target.matches('#btn-css')){
-  // solo despinto el home para que luego se pinte la pregunta que salga del random
-  home.classList.toggle('pintar-ocultar')
-  PreguntasAleatoriasHTML(preguntasCSS)
-  document.addEventListener('click', (e)=>{
-    e.preventDefault()
-    e.stopPropagation()
-  
-    categoriaLenguaje(e,preguntasCSS)
-  })
-  // Funcion para ordenar las respuestas de tipo Draggable
-  draggable(preguntasCSS)
-  //img1,img2,img3,img4,img5,
-}
+})
 
+document.addEventListener('click', e=>{
+  
+  // home-css
+  if(e.target.matches('#btn-css')){
+    // solo despinto el home para que luego se pinte la pregunta que salga del random
+    home.classList.toggle('pintar-ocultar')
+    PreguntasAleatoriasHTML(preguntasCSS)
+    document.addEventListener('click', (e)=>{
+      e.preventDefault()
+      e.stopPropagation()
+
+      categoriaLenguaje(e,preguntasCSS)
+    })
+    // Funcion para ordenar las respuestas de tipo Draggable
+    draggable(preguntasCSS)
+    //img1,img2,img3,img4,img5,
+  }
 
 })
 
+document.addEventListener('click', e=>{
+  
+  // home-css
+  if(e.target.matches('#btn-js')){
+    // solo despinto el home para que luego se pinte la pregunta que salga del random
+    home.classList.toggle('pintar-ocultar')
+    PreguntasAleatoriasHTML(preguntasJS)
+    document.addEventListener('click', (e)=>{
+      e.preventDefault()
+      e.stopPropagation()
+
+      categoriaLenguaje(e,preguntasJS)
+    })
+    // Funcion para ordenar las respuestas de tipo Draggable
+    draggable(preguntasJS)
+    //img1,img2,img3,img4,img5,
+  }
+
+})

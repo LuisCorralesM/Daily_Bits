@@ -1,4 +1,4 @@
-export {preguntasHTML, preguntasCSS}
+export {preguntasHTML, preguntasCSS, preguntasJS}
 
 const preguntasHTML = [
   { 
@@ -34,31 +34,34 @@ const preguntasHTML = [
       src4: "imagenes/icono-html-a.png",
       src5: "imagenes/icono-html-c.png",
       respuesta: [1,4,3,2,5]
-  },  
+  }, 
   {
     tipo: 'img',
-    enunciado: '¿Qué tecnología pertenece al MEVN Stack?',
-    src1: "imagenes/logo-angular.png",
-    src2: "imagenes/logo-nodeJS.png",
-    src3: "imagenes/logo-windows.png",
-    src4: "imagenes/logo-linux.png",
-    respuesta: 2
-  },  
-  {
-    tipo: 'img',
-    enunciado: '¿Cuál es un FrameWork de JavaScript?',
-    src1: "imagenes/logo-angular.png",
-    src2: "imagenes/logo-nodeJS.png",
-    src3: "imagenes/logo-windows.png",
-    src4: "imagenes/logo-linux.png",
+    enunciado: '¿Cuál es el logo de html?',
+    src1: "imagenes/logo-html.png",
+    src2: "imagenes/logo-react.png",
+    src3: "imagenes/logo-vsc.png",
+    src4: "imagenes/logo-github.png",
+    fig1: "HTML",
+    fig2: "REACT",
+    fig3: "VSC",
+    fig4: "GITHUB",
     respuesta: 1
-  }
+  },  
+  {
+    tipo: 'range',
+    enunciado: '¿Para qué se usa la etiqueta <p>?',
+    opcion1: "Para un salto de línea",
+    opcion2: "Para declara un párrafo",
+    opcion3: "Para declarar un título",
+    respuesta: 2
+},
 ]
 
 const preguntasCSS = [
   { 
     tipo: 'range',
-    enunciado: '¿Qué tipo se selector css representa el caracter . ?',
+    enunciado: '¿Qué tipo de selector css representa el caracter . ?',
     opcion1: 'id',
     opcion2: 'class',
     opcion3: 'tag',
@@ -97,6 +100,10 @@ const preguntasCSS = [
     src2: "imagenes/logo-react.png",
     src3: "imagenes/logo-vsc.png",
     src4: "imagenes/logo-github.png",
+    fig1: "BOOTSTRAP",
+    fig2: "REACT",
+    fig3: "VSC",
+    fig4: "GITHUB",
     respuesta: 1
   },  
   {
@@ -106,6 +113,73 @@ const preguntasCSS = [
     src2: "imagenes/color-fondo2.png",
     src3: "imagenes/color-fondo3.png",
     src4: "imagenes/color-fondo4.png",
+    fig1: "OPCION 1",
+    fig2: "OPCION 2",
+    fig3: "OPCION 3",
+    fig4: "OPCION 4",
     respuesta: 3
   }
+]
+
+const preguntasJS = [
+  { 
+    tipo: 'range',
+    enunciado: '¿Qué característica es válida de JavaScript?',
+    opcion1: 'Fuerte tipado',
+    opcion2: 'Débil tipado',
+    opcion3: 'Multi thread',
+    respuesta: 2
+  },
+  {
+    tipo: 'range',
+    enunciado: '¿Cuál es un método de arrays en JavaScript?',
+    opcion1: 'key',
+    opcion2: 'value',
+    opcion3: 'join',
+    respuesta: 3
+  },
+  {
+      tipo: 'range',
+      enunciado: '¿Qué método une 2 arrays?',
+      opcion1: "every",
+      opcion2: "some",
+      opcion3: "concat",
+      respuesta: 3
+  },
+  {
+      tipo: 'draggable',
+      enunciado: 'ordena la sintaxis de un objeto',
+      src1: "imagenes/let-const.png",
+      src2: "imagenes/value.png",
+      src3: "imagenes/key.png",
+      src4: "imagenes/llave-abierta.png",
+      src5: "imagenes/llave-cerrada.png",
+      respuesta: [1,4,3,2,5]
+  }, 
+  {
+    tipo: 'img',
+    enunciado: '¿Qué tecnología pertenece al MEVN Stack?',
+    src1: "imagenes/logo-angular.png",
+    src2: "imagenes/logo-nodeJS.png",
+    src3: "imagenes/logo-windows.png",
+    src4: "imagenes/logo-linux.png",
+    fig1: "ANGULAR",
+    fig2: "NODE",
+    fig3: "WINDOWS",
+    fig4: "LINUX",
+    respuesta: 2
+  },  
+  {
+    tipo: 'img',
+    enunciado: '¿Cuál es un FrameWork de JavaScript?',
+    src1: "imagenes/logo-angular.png",
+    src2: "imagenes/logo-nodeJS.png",
+    src3: "imagenes/logo-windows.png",
+    src4: "imagenes/logo-linux.png",
+    fig1: "ANGULAR",
+    fig2: "NODE",
+    fig3: "WINDOWS",
+    fig4: "LINUX",
+    respuesta: 1
+  } 
 ]

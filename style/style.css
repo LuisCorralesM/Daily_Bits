@@ -572,11 +572,48 @@
     width: 100vw; 
 }
 
-.seccion6-perfil p{
+.titulo-perfil{
     color: var(--color5-white);
     padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 
+.contenedor-data-perfil{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
+.contenedor-data-perfil img{
+    width: 80px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.nombre{
+    color: var(--color5-white);
+    font-weight: 900;
+}
+
+.opcion-cerrar-sesion{
+    margin-top: 20px;
+    width: 100%;
+}
+
+.opcion-cerrar-sesion p{
+    color: var(--color9-red);
+    font-size: 16px;
+    text-align: center;
+    font-weight: 200;
+}
+.correo{
+    color: var(--color5-white);
+    font-size: 14px;
+}
 /* calse toggle */
 
 .pintar-ocultar{
